@@ -17,4 +17,11 @@ after clicking button to will go next screen and will be show snackbar message;
 Listview in listtile has title and subtitle;
 after clicking any listtile snackbar message will be show that listtile's title and sub title;
 
+#output:
+
+https://github.com/user-attachments/assets/6cf86322-25e1-47ca-bc09-1bba8672f2e2
+
+
+
+
 ==============xxxx=================
