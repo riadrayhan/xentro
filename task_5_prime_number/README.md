@@ -1,16 +1,10 @@
 # task_5_prime_number
 
-A new Flutter project.
+A new Prime Number Flutter project.
 
 ## Getting Started
+<P>Prime Number Program</P>
 
-This project is a starting point for a Flutter application.
+![prime](https://github.com/user-attachments/assets/ce3c48d6-5950-47df-9bde-5731ba3460cb)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
