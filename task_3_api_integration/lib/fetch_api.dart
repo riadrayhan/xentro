@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -13,8 +15,7 @@ class FetchApi extends StatefulWidget {
 class _FetchApiState extends State<FetchApi> {
 
   List<dynamic> posts = [];
-  bool isLoading = true; // Track loading state
-
+  bool isLoading=true;
   Future<void> downloadJson() async {
     try {
       final response = await get(
@@ -32,24 +33,6 @@ class _FetchApiState extends State<FetchApi> {
       setState(() {
         isLoading = false;
       });
-      // show an error message to the user
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Error"),
-            content: Text("Failed to load data. Please try again."),
-            actions: <Widget>[
-              TextButton(
-                child: Text("Okay"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
     }
   }
 
@@ -58,58 +41,62 @@ class _FetchApiState extends State<FetchApi> {
     super.initState();
     downloadJson();
     _checkInitialConnectivity();
+    _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
 
   }
-    @override
-    void dispose() {
-      _connectivity.onConnectivityChanged.drain();
-      super.dispose();
+
+  @override
+  void dispose() {
+    _connectivity.onConnectivityChanged.drain();
+    super.dispose();
+  }
+
+  //===========internet checker start================//
+
+  final Connectivity _connectivity = Connectivity();
+  bool _isConnected = true;
+
+  Future<void> _checkInitialConnectivity() async {
+    final ConnectivityResult result = await _connectivity.checkConnectivity();
+    _updateConnectionStatus(result);
+  }
+
+  void _updateConnectionStatus(ConnectivityResult result) {
+    setState(() {
+      _isConnected = (result != ConnectivityResult.none);
+    });
+
+    if (!_isConnected) {
+      _showNoInternetDialog();
     }
-    //===========internet checker start================//
+  }
 
-    final Connectivity _connectivity = Connectivity();
-    bool _isConnected = true;
-
-    Future<void> _checkInitialConnectivity() async {
-      final List<ConnectivityResult> result = await _connectivity.checkConnectivity();
-      _updateConnectionStatus(result as ConnectivityResult);
-    }
-
-    void _updateConnectionStatus(ConnectivityResult result) {
-      setState(() {
-        _isConnected = (result != ConnectivityResult.none);
-      });
-
-      if (!_isConnected) {
-        _showNoInternetDialog();
-      }
-    }
-
-    void _showNoInternetDialog() {
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('No Internet Connection'),
-            content: Text('Please check your network connection and try again.'),
-            actions: <Widget>[
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
+  void _showNoInternetDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('No Internet Connection'),
+          content: Text('Please check your network connection and try again.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
 //=========== internet checker end ================//
 
 
-    @override
+
+  @override
     Widget build(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
