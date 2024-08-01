@@ -10,3 +10,8 @@ A new API Fetching Flutter project.
 <p>-for error handling i added try catch;</p>
 <p>-also adding network connection handling;</p>
 
+
+
+https://github.com/user-attachments/assets/c3574f5e-a9b8-429b-9d71-f7eed29f040c
+
+
