@@ -67,7 +67,6 @@ class _FetchApiState extends State<FetchApi> {
     }
     //===========internet checker start================//
 
-
     final Connectivity _connectivity = Connectivity();
     bool _isConnected = true;
 
