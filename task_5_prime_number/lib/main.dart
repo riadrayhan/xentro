@@ -16,8 +16,6 @@ bool isPrime(int num) {
   if (num <= 3) return true;  // 2 and 3 are primes
   if (num % 2 == 0 || num % 3 == 0) return false; // Check for multiples of 2 or 3
 
-  // Check from 5 to the square root of num, incrementing by 6 (i.e., check 5, 11, 17, ...)
-
   for (int i = 5; i * i <= num; i += 6) {
     if (num % i == 0 || num % (i + 2) == 0) return false;
   }
