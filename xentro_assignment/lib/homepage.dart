@@ -33,11 +33,11 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   TextSpan(
                     text: 'Welcome to',
-                    style: TextStyle(color: Color(0xFFBD1111),fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Color(0xFFBD1111),fontWeight: FontWeight.bold,fontSize: 20),
                   ),
                   TextSpan(
                     text: ' Xentro',
-                    style: TextStyle(color: PrimaryColors.primaryColor,fontWeight: FontWeight.bold)
+                    style: TextStyle(color: PrimaryColors.primaryColor,fontWeight: FontWeight.bold,fontSize: 20)
                   )
                 ]
               )),
